@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../assets/css/styles.css';
-import PropTypes from 'prop-types'
 
 export class Projects extends Component {
     state={

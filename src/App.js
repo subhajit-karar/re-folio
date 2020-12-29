@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/font-awesome.min.css';
 import Header from './components/Header';
 import Projects from './Pages/Projects';
-import Skills from './Pages/Skills'
+
 
 
 class App extends Component {
@@ -35,8 +35,8 @@ class App extends Component {
             name={userInfo.name} 
             email={userInfo.email} 
             contact={userInfo.contact} />
-            {/* <Projects /> */}
-            <Skills />
+            <Projects />
+           
            
       </React.Fragment>
     )
