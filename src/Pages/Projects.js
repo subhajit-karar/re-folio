@@ -18,19 +18,19 @@ export class Projects extends Component {
                 <div className="container projects">
                     <div className="row">
                         <div className="col-3">
-                            <a href="#">
+                            <a href="/todo">
                             <i className="fa fa-list-ul"></i>
                             <h4 className="subheading">Todo List</h4>
                           </a>
                         </div>
                         <div className="col-3">
-                            <a href="#">
+                            <a href="/shoppingCart">
                             <i className="fa fa-shopping-cart"></i>
                             <h4 className="subheading">Shoppping Cart</h4>
                           </a>
                         </div>
                         <div className="col-3">
-                            <a href="#">
+                            <a href="/calculator">
                             <i className="fa fa-calculator"></i>
                             <h4 className="subheading">Calculator</h4>
                           </a>
