@@ -5,7 +5,7 @@ const Skills = (props) => {
         return (<div className="col-6 p-3">
                 <h5>{skill.skill}</h5>
                 <div className="progress">
-                    <div className="progress-bar bg-primary" role="progressbar" style={{width: skill.mark}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    <div className="progress-bar bg-primary" role="progressbar" style={{width: skill.mark}} aria-valuemax="100">
                         {skill.mark}
                     </div>
                 </div>

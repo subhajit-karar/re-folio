@@ -4,7 +4,7 @@ import '../assets/css/styles.css';
 export class Projects extends Component {
     state={
         projects:[
-            {name: 'Todo List', iconClass:'fa fa-list-ul', url:''},
+            {name: 'Todo List', iconClass:'fa fa-list-ul', url:'/todo'},
 
         ]
     }
