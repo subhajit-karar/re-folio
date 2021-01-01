@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/font-awesome.min.css';
 import Header from './components/Header';
 import Projects from './Pages/Projects';
+import Skills from './Pages/Skills';
 
 
 
@@ -19,9 +20,17 @@ class App extends Component {
       {id:'pg3',linkText:'Experiences',url:''}
     ],
     skills: [
-      {id:'sk1',skill:'React',mark:'70%'},
-      {id:'sk2',skill:'Dojo',mark:'60%'},
-      {id:'sk3',skill:'Html5',mark:'80%'}
+      {id:'sk1',skill:'React,Redux',mark:'70%'},
+      {id:'sk2',skill:'JavaScript,VanillaJS',mark:'70%'},
+      {id:'sk3',skill:'Html5',mark:'80%'},
+      {id:'sk4',skill:'Css3',mark:'80%'},
+      {id:'sk5',skill:'Bootstrap',mark:'80%'},
+      {id:'sk6',skill:'Css(sass/less)',mark:'80%'},      
+      {id:'sk6',skill:'Wordpress',mark:'70%'},
+      {id:'sk6',skill:'RESTful API',mark:'60%'},
+      {id:'sk6',skill:'Magento Front-End',mark:'60%'},
+      {id:'sk6',skill:'Source control tools (Git, SVN etc)',mark:'70%'},      
+      {id:'sk6',skill:'Project Management Tools (Jira, Asana etc.)',mark:'70%'},
     ],
     
   }
@@ -35,7 +44,9 @@ class App extends Component {
             name={userInfo.name} 
             email={userInfo.email} 
             contact={userInfo.contact} />
-            <Projects />
+
+            {/* <Projects /> */}
+            <Skills skills={this.state.skills} />
            
            
       </React.Fragment>
