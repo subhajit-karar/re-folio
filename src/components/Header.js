@@ -1,7 +1,17 @@
 import React from 'react';
 import profImg from '../assets/img/profile.jpg';
+import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
+    const pages = props.pages.map((page)=>{
+        return (
+            <li className="nav-item" key={page.id}>
+                <NavLink exact={page.homePage? true:false} className="nav-link" activeClassName="active" to={page.url}>
+                    {page.linkText}
+                </NavLink>
+            </li>
+        );
+    });
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
                 <span className="d-none d-lg-block">
@@ -14,9 +24,7 @@ const Header = (props) => {
                <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                <div className="collapse navbar-collapse mt-5" id="navbarSupportedContent">
                    <ul className="navbar-nav">
-                       <li className="nav-item"><a className="nav-link active" href="/">Projects</a></li>
-                       <li className="nav-item"><a className="nav-link" href="/skills">Skills</a></li>
-                       <li className="nav-item"><a className="nav-link" href="/experience">Experience</a></li>
+                       {pages}
                    </ul>
                </div>
            </nav>

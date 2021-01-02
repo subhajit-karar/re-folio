@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/font-awesome.min.css';
 import Header from './components/Header';
@@ -16,9 +17,9 @@ class App extends Component {
       email: 'subhajit.karar09@gmail.com', 
       contact:'+91-9836381324'},
     pages:[
-      {id:'pg1',linkText:'Projects',url:''},
-      {id:'pg2',linkText:'Skills',url:''},
-      {id:'pg3',linkText:'Experiences',url:''}
+      {id:'pg1',linkText:'Projects',url:'/', homePage:true},
+      {id:'pg2',linkText:'Skills',url:'/skills'},
+      {id:'pg3',linkText:'Experiences',url:'/experiences'}
     ],
     skills: [
       {id:'sk1',skill:'React,Redux',mark:'70%'},
@@ -47,19 +48,25 @@ class App extends Component {
   render() {
     const userInfo = this.state.userinfo;
     return (
-      <React.Fragment>
+        <Router>
           <Header
             pages={this.state.pages}
             name={userInfo.name} 
             email={userInfo.email} 
-            contact={userInfo.contact} />
-
-            <Projects />
-            <Skills skills={this.state.skills} />
-            <Experiences  />
-           
-           
-      </React.Fragment>
+            contact={userInfo.contact} 
+            />
+            <Route exact path="/" component={Projects} />
+            <Route path="/skills" render={
+              ()=>{
+                return <Skills skills={this.state.skills} />
+              }
+            } />
+            <Route path="/experiences" render={
+              ()=>{
+                return <Experiences />
+              }
+            } />
+          </Router>
     )
   }
 }
