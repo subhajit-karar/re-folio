@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PageHOC from './PageHOC';
 
 const Skills = (props) => {
     const skills = props.skills.map(function(skill){
@@ -12,19 +13,9 @@ const Skills = (props) => {
             </div>);
     });
     return (
-        <div className="container-fluid p-0">
-              <section className="resume-section">
-                <div className="resume-section-content">
-                <h2 className="mb-5">Skills</h2>
-                    <div className="container skills">
-                        <div className="row">
-                            {skills}
-                        </div>
-                    </div>
-                </div>    
-               </section>
-               
-           </div>
+        <PageHOC heading="skills">
+            {skills}
+        </PageHOC>  
     )
 }
 

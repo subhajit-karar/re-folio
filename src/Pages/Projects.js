@@ -1,47 +1,50 @@
 import React, { Component } from 'react';
-import '../assets/css/styles.css';
+import '../assets/css/styles.scss';
+import {NavLink} from 'react-router-dom';
+import PageHOC from './PageHOC';
+import axios from '../components/axios-base';
+import Loader from '../components/Loader';
 
 export class Projects extends Component {
     state={
-        projects:[
-            {name: 'Todo List', iconClass:'fa fa-list-ul', url:'/todo'},
-
-        ]
+        projects:[],
+        loader:true,
+    }
+    componentDidMount(){
+        setTimeout(function(){
+            axios.get('https://re-folio-default-rtdb.firebaseio.com/refolio/-MQ23yMm9j9RVGGEVSeU.json')
+            .then(response=>{
+                console.log(response);
+                this.setState({
+                    loader:false,
+                    projects: response.data.projects
+                });
+            })
+        }.bind(this), 500);
+        
     }
 
     render() {
+      let projectContent;
+      if(this.state.loader){
+        projectContent = <Loader />
+      }else{
+        projectContent = this.state.projects.map((project)=>{
+            return (
+              <div className="col-3" key={project.id}>
+                  <NavLink exact to={project.url}>
+                    <i className={project.iconClass}></i>
+                    <h4 className="subheading">{project.name}</h4>
+                  </NavLink>
+              </div>
+            );
+        });
+      }
+
         return (
-            <div className="container-fluid p-0">
-              <section className="resume-section">
-                <div className="resume-section-content">
-                <h2 className="mb-5">Projects</h2>
-                <div className="container projects">
-                    <div className="row">
-                        <div className="col-3">
-                            <a href="/todo">
-                            <i className="fa fa-list-ul"></i>
-                            <h4 className="subheading">Todo List</h4>
-                          </a>
-                        </div>
-                        <div className="col-3">
-                            <a href="/shoppingCart">
-                            <i className="fa fa-shopping-cart"></i>
-                            <h4 className="subheading">Shoppping Cart</h4>
-                          </a>
-                        </div>
-                        <div className="col-3">
-                            <a href="/calculator">
-                            <i className="fa fa-calculator"></i>
-                            <h4 className="subheading">Calculator</h4>
-                          </a>
-                        </div>
-                        
-                      </div>
-                  </div>
-                  </div>
-               </section>
-               
-           </div>
+            <PageHOC heading="projects">
+                {projectContent}
+            </PageHOC>
         )
     }
 }

@@ -6,67 +6,64 @@ import Header from './components/Header';
 import Projects from './Pages/Projects';
 import Skills from './Pages/Skills';
 import Experiences from './Pages/Experiences';
+import axios from './components/axios-base';
+import Loader from './components/Loader';
 
-
-
-class App extends Component {
-  
+class App extends Component {  
   state = {
-    userinfo: {
-      name:'Subhajit Karar', 
-      email: 'subhajit.karar09@gmail.com', 
-      contact:'+91-9836381324'},
-    pages:[
-      {id:'pg1',linkText:'Projects',url:'/', homePage:true},
-      {id:'pg2',linkText:'Skills',url:'/skills'},
-      {id:'pg3',linkText:'Experiences',url:'/experiences'}
-    ],
-    skills: [
-      {id:'sk1',skill:'React,Redux',mark:'70%'},
-      {id:'sk2',skill:'JavaScript,VanillaJS',mark:'70%'},
-      {id:'sk3',skill:'Html5',mark:'80%'},
-      {id:'sk4',skill:'Css3',mark:'80%'},
-      {id:'sk5',skill:'Bootstrap',mark:'80%'},
-      {id:'sk6',skill:'Css(sass/less)',mark:'80%'},      
-      {id:'sk7',skill:'Wordpress',mark:'70%'},
-      {id:'sk8',skill:'RESTful API',mark:'60%'},
-      {id:'sk9',skill:'Magento Front-End',mark:'60%'},
-      {id:'sk10',skill:'Dojo',mark:'70%'},
-      {id:'sk11',skill:'Photoshop',mark:'60%'},
-      {id:'sk12',skill:'Source control tools (Git, SVN etc)',mark:'70%'},      
-      {id:'sk13',skill:'Project Management Tools (Jira, Asana etc.)',mark:'70%'},
-    ],
-    experiences:[
-      {company:'',position:[
-        {}
-      ]},
-      
-    ]
+    userinfo: {},
+    pages:[],
+    skills: [ ],
+    experiences:[],
+    loader:true,
+  }
+  componentDidMount() {
+    setTimeout(function(){
+      axios.get('https://re-folio-default-rtdb.firebaseio.com/refolio/-MQ23yMm9j9RVGGEVSeU.json')
+      .then(response => {
+        console.log(response);
+        this.setState({
+          loader:false,
+          userinfo: response.data.userinfo,
+          pages: response.data.pages,
+          skills: response.data.skills,
+          experiences: response.data.experiences,
+        });
+      })
+    }.bind(this),2000);
     
   }
-  
   render() {
     const userInfo = this.state.userinfo;
+    let fullContent;
+    if(this.state.loader){
+      fullContent = <Loader />
+    }else{
+      fullContent = <Router><Header
+        pages={this.state.pages}
+        name={userInfo.name} 
+        email={userInfo.email} 
+        contact={userInfo.contact} 
+        />
+        <Route exact path="/" component={Projects} />
+        <Route path="/skills" render={
+          ()=>{
+            return <Skills skills={this.state.skills} />
+          }
+        } />
+        <Route path="/experiences" render={
+          ()=>{
+            return <Experiences />
+          }
+        } />
+        </Router>
+      
+    }
     return (
-        <Router>
-          <Header
-            pages={this.state.pages}
-            name={userInfo.name} 
-            email={userInfo.email} 
-            contact={userInfo.contact} 
-            />
-            <Route exact path="/" component={Projects} />
-            <Route path="/skills" render={
-              ()=>{
-                return <Skills skills={this.state.skills} />
-              }
-            } />
-            <Route path="/experiences" render={
-              ()=>{
-                return <Experiences />
-              }
-            } />
-          </Router>
+      <React.Fragment>
+        {fullContent}
+      </React.Fragment>
+       
     )
   }
 }
