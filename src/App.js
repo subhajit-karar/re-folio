@@ -1,70 +1,24 @@
-import React, { Component } from 'react';
-import {BrowserRouter as Router,Route} from 'react-router-dom';
+import React, { Component, Suspense, lazy } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/font-awesome.min.css';
-import Header from './components/Header';
-import Projects from './Pages/Projects';
-import Skills from './Pages/Skills';
-import Experiences from './Pages/Experiences';
-import axios from './components/axios-base';
-import Loader from './components/Loader';
+import ProjectProfile from './components/ProjectProfile'
+
 
 class App extends Component {  
-  state = {
-    userinfo: {},
-    pages:[],
-    skills: [ ],
-    experiences:[],
-    loader:true,
-  }
-  componentDidMount() {
-    setTimeout(function(){
-      axios.get('https://re-folio-default-rtdb.firebaseio.com/refolio/-MQ23yMm9j9RVGGEVSeU.json')
-      .then(response => {
-        console.log(response);
-        this.setState({
-          loader:false,
-          userinfo: response.data.userinfo,
-          pages: response.data.pages,
-          skills: response.data.skills,
-          experiences: response.data.experiences,
-        });
-      })
-    }.bind(this),2000);
-    
-  }
+ 
   render() {
-    const userInfo = this.state.userinfo;
-    let fullContent;
-    if(this.state.loader){
-      fullContent = <Loader />
+    if(window.location.pathname.indexOf('/projects/') !== -1){
+      return <ProjectProfile />
     }else{
-      fullContent = <Router><Header
-        pages={this.state.pages}
-        name={userInfo.name} 
-        email={userInfo.email} 
-        contact={userInfo.contact} 
-        />
-        <Route exact path="/" component={Projects} />
-        <Route path="/skills" render={
-          ()=>{
-            return <Skills skills={this.state.skills} />
-          }
-        } />
-        <Route path="/experiences" render={
-          ()=>{
-            return <Experiences />
-          }
-        } />
-        </Router>
-      
+      const AppProfile = lazy(() => import("./components/AppProfile"));
+      return (
+        <Suspense fallback={<ProjectProfile />}>
+          <AppProfile />
+        </Suspense>
+      );
     }
-    return (
-      <React.Fragment>
-        {fullContent}
-      </React.Fragment>
-       
-    )
+    
+    
   }
 }
 
