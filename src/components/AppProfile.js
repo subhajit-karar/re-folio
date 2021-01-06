@@ -5,7 +5,7 @@ import Skills from '../Pages/Skills';
 import Experiences from '../Pages/Experiences';
 import axios from '../components/axios-base';
 import Loader from '../components/Loader';
-import {BrowserRouter as Router,Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
 export class AppProfile extends Component {
 
@@ -40,7 +40,7 @@ export class AppProfile extends Component {
         if (this.state.loader) {
             fullContent = <Loader />
         } else {
-            fullContent = <Router>
+            fullContent = <div>
                 <Header
                     pages={this.state.pages}
                     name={userInfo.name}
@@ -60,7 +60,7 @@ export class AppProfile extends Component {
                 } />
                 
 
-            </Router>
+            </div>
 
 
         }

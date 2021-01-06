@@ -3,6 +3,7 @@ import '../assets/css/styles.scss';
 import PageHOC from './PageHOC';
 import axios from '../components/axios-base';
 import Loader from '../components/Loader';
+import {Link} from 'react-router-dom'
 
 
 
@@ -32,10 +33,10 @@ export class Projects extends Component {
         projectContent = this.state.projects.map((project)=>{
             return (
               <div className="col-3" key={project.id}>
-                  <a href={project.url}>
+                  <Link to={project.url}>
                     <i className={project.iconClass}></i>
                     <h4 className="subheading">{project.name}</h4>
-                  </a>
+                  </Link>
               </div>
             );
         });
