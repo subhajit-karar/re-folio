@@ -1,23 +1,20 @@
-import React, { Component, Suspense, lazy } from 'react';
+import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/font-awesome.min.css';
-import ProjectProfile from './components/ProjectProfile'
+import ProjectProfile from './components/ProjectProfile';
+import AppProfile from  "./components/AppProfile";
 
 
 class App extends Component {  
  
   render() {
-    if(window.location.pathname.indexOf('/projects/') !== -1){
-      return <ProjectProfile />
-    }else{
-      const AppProfile = lazy(() => import("./components/AppProfile"));
-      return (
-        <Suspense fallback={<ProjectProfile />}>
+    return(
+        <React.Fragment>
+          <ProjectProfile />
           <AppProfile />
-        </Suspense>
-      );
-    }
-    
+        </React.Fragment>
+    );
+
     
   }
 }
