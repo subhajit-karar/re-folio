@@ -42,7 +42,6 @@ export class ShoppingCart extends Component {
 
     // }
     render (){
-        console.log(this.state.dummyPost);
         let items = null;
         items = this.state.cartItems.map((item,index) =>{
             return(

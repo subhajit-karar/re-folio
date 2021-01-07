@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function PageHOC(props) {
     return (
-        <div className="container-fluid p-0">
+        <div className="panelAdjust container-fluid">
               <section className="resume-section">
                 <div className="resume-section-content">
                     <h2 className="mb-5">{props.heading}</h2>

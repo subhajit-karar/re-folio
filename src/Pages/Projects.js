@@ -33,7 +33,7 @@ export class Projects extends Component {
         projectContent = this.state.projects.map((project)=>{
             return (
               <div className="col-3" key={project.id}>
-                  <Link to={project.url}>
+                  <Link onClick={()=>{this.props.onclickProjLink()}} to={project.url}>
                     <i className={project.iconClass}></i>
                     <h4 className="subheading">{project.name}</h4>
                   </Link>

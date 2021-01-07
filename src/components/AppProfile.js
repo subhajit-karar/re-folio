@@ -8,8 +8,6 @@ import Loader from '../components/Loader';
 import {Route} from 'react-router-dom';
 
 export class AppProfile extends Component {
-
-
     state = {
         userinfo: {},
         pages: [],
@@ -37,17 +35,25 @@ export class AppProfile extends Component {
     render() {
         const userInfo = this.state.userinfo;
         let fullContent;
+        let header;
+        if(this.props.headerDisplay){
+            header = <Header
+            pages={this.state.pages}
+            name={userInfo.name}
+            email={userInfo.email}
+            contact={userInfo.contact}
+        />
+        }
         if (this.state.loader) {
             fullContent = <Loader />
         } else {
             fullContent = <div>
-                <Header
-                    pages={this.state.pages}
-                    name={userInfo.name}
-                    email={userInfo.email}
-                    contact={userInfo.contact}
-                />
-                <Route exact path="/" component={Projects} />
+                {header}
+                <Route exact path="/" render={
+                    () =>{
+                        return <Projects onclickProjLink={this.props.onclickProject} />
+                    }
+                } />
                 <Route path="/skills" render={
                     () => {
                         return <Skills skills={this.state.skills} />
