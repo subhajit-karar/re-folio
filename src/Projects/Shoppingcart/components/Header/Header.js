@@ -13,7 +13,7 @@ const header = (props) => {
                     <img src={Logo} alt="logo" height="100" />
                 </NavLink>
               </div>
-              <div className="col-6 text-center">
+              {/* <div className="col-6 text-center">
               <div className="search-controls">
                     
                     <div className="nav-fill">
@@ -29,13 +29,13 @@ const header = (props) => {
                         </button>
                     </div>
                 </div>
-              </div>
+              </div> */}
               <div className="col-3 d-flex justify-content-end align-items-center">
                 
                 <i className="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
 
-                <span>3 Items <br/>
-                    <strong>$50.00</strong></span>
+                <span>{props.count} Items <br/>
+                    <strong>{props.total}</strong></span>
                 
 
               </div>

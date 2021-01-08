@@ -19,7 +19,7 @@ export class AppProfile extends Component {
         setTimeout(function () {
             axios.get('https://re-folio-default-rtdb.firebaseio.com/refolio/-MQ23yMm9j9RVGGEVSeU.json')
                 .then(response => {
-                    console.log(response);
+                    //console.log(response);
                     this.setState({
                         loader: false,
                         userinfo: response.data.userinfo,
