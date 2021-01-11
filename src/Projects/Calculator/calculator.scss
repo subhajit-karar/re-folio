@@ -1,0 +1,20 @@
+.calculatorCont{
+    border: 1px solid #333;
+    background: #efefef;
+    .resultDisplay{
+        margin-left: -.75rem;
+        margin-right: -.75rem;
+        margin-bottom: 1rem;
+        div{
+            background: #333;
+            color: #FFF;
+            text-align: left;
+            padding: .25rem .75rem;
+            font-size: 1.4rem;
+        }
+        div + div{
+            text-align: right;
+        }
+    }
+
+}
