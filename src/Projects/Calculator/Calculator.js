@@ -9,7 +9,7 @@ export class Calculator extends Component {
     state={
         result:0,
         question:null,
-        keys:[1,2,3,'+',4,5,6,'-',7,8,9,'*',0,'.','/','=']
+        keys:[1,2,3,'+',4,5,6,'-',7,8,9,'*',0,'Clr','/','=']
     }
     calculate = (e) =>{
        
@@ -23,7 +23,9 @@ export class Calculator extends Component {
     render() {
         return (
             <div className="container text-center">
+                <div className="bg-danger text-white rounded mb-3">Work in progress, design completes, functionality in progress</div>
                 <h3 className="mb-5">Calculator</h3>
+                
                 <div className="col-lg-3 col-md-4 mx-auto calculatorCont">
                     
                    <ResultDisplay question={this.state.question} result={this.state.result} />
