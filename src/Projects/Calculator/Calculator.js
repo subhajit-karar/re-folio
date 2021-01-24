@@ -38,6 +38,7 @@ export class Calculator extends Component {
         
         try {    
             this.setState({
+                // eslint-disable-next-line
                 result: eval(this.state.result.replace(/^0+/, ''))
             })
         } catch (e) {
