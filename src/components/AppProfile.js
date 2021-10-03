@@ -61,7 +61,7 @@ export class AppProfile extends Component {
                 } />
                 <Route path="/experiences" render={
                     () => {
-                        return <Experiences />
+                        return <Experiences experiences={this.state.experiences} />
                     }
                 } />
                 
