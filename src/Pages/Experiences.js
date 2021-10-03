@@ -4,7 +4,7 @@ import PageHOC from "./PageHOC";
 export default function Experiences(props) {
   const experiences = props.experiences.map(function (exp) {
     return (
-      <div key={exp.id} className="col-8 p-3 mb-5">
+      <div key={exp.id} className="col-8 p-3 mb-3">
         <h4 className="mb-3">{exp.position}</h4>
         <div className="container pl-4">
           <h5>
