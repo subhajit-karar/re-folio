@@ -14,8 +14,7 @@ export class Calculator extends Component {
     trigger = (e) =>{
        
         if(e === "="){
-           
-            this.calculate();
+           this.calculate();
         }
         else if(e === "Clr"){
             this.reset()
