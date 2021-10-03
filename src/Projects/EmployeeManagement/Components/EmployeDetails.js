@@ -31,6 +31,7 @@ function EmployeDetails() {
      console.log(tempEmployess);
      let tempEmployess2 = tempEmployess.filter(item=>{
          if(item.id !== id) return item;
+         else return false                                                                      
      });
      console.log(tempEmployess2);
      setEmployee(tempEmployess2);
